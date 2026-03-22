@@ -1,6 +1,8 @@
-user-service
+### user-service
+    `
     create user
     http://localhost:5001/api/users 
+    
     {
     "fullName": "Jane Doe",
     "email": "jane_doe@mail.com",
@@ -28,6 +30,6 @@ user-service
     
     delete user
     http://localhost:5001/api/users/252
-
-salon-service
+    `
+### salon-service
     
