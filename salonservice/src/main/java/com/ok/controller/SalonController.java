@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/salons")
 @RequiredArgsConstructor
@@ -42,5 +44,35 @@ public class SalonController {
 		SalonDTO salonDTO1 = SalonMapper.mapToDTO(salon);
 
 		return ResponseEntity.ok(salonDTO1);
+	}
+
+	@GetMapping
+	public ResponseEntity<List<SalonDTO>> getSalons() throws Exception {
+
+		UserDTO userDTO = new UserDTO();
+		userDTO.setId(1L);
+
+		List<Salon> salons = salonService.getAllSalons();
+
+		List<SalonDTO> salonDTOS = salons.stream()
+						.map((s) -> {
+							SalonDTO salonDTO = SalonMapper.mapToDTO(s);
+							return salonDTO;
+						}).toList();
+
+		return ResponseEntity.ok(salonDTOS);
+	}
+
+	@GetMapping("/{salonId}")
+	public ResponseEntity<SalonDTO> getSalonById(
+					@PathVariable Long salonId) throws Exception {
+
+		UserDTO userDTO = new UserDTO();
+		userDTO.setId(1L);
+
+		Salon salon = salonService.getSalonById(salonId);
+		SalonDTO salonDTO = SalonMapper.mapToDTO(salon);
+
+		return ResponseEntity.ok(salonDTO);
 	}
 }
