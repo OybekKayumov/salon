@@ -25,6 +25,8 @@ public class SalonDTO {
 
 	private Long ownerId;
 
+	//* private UserDTO owner;
+
 	private LocalTime openingTime;
 
 	private LocalTime closeTime;

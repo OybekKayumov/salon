@@ -103,6 +103,4 @@ public class UserController {
 		userService.deleteUser(id);
 		return new ResponseEntity<>("User deleted!", HttpStatus.ACCEPTED);
 	}
-
-	//* 1-45
 }
