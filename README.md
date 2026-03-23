@@ -50,7 +50,7 @@
 `
 - update salon
 - http://localhost:5002/api/salons/152
-
+    `
     {
         "name": "Beauty Salon",
         "images": [
@@ -65,5 +65,6 @@
         "openTime": "08:00:00",
          "closeTime": "21:00:00"
     }
+  `
 `
     
