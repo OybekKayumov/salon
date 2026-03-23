@@ -46,11 +46,9 @@
         "closeTime": "20:00:00",
         "images": ["www.images.com/1","www.images.com/2"]  
     }
-`
-`
+
 - update salon
 - http://localhost:5002/api/salons/152
-    `
     {
         "name": "Beauty Salon",
         "images": [
@@ -64,7 +62,6 @@
         "ownerId": 1,
         "openTime": "08:00:00",
          "closeTime": "21:00:00"
-    }
-  `
+    }  
 `
     
