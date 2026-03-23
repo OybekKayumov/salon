@@ -25,7 +25,7 @@ public class SalonServiceImpl implements SalonService {
 		salon.setCity(req.getCity());
 		salon.setImages(req.getImages());
 		salon.setOwnerId(user.getId());
-		salon.setOpeningTime(req.getOpeningTime());
+		salon.setOpenTime(req.getOpenTime());
 		salon.setCloseTime(req.getCloseTime());
 		salon.setPhoneNumber(req.getPhoneNumber());
 
@@ -37,17 +37,23 @@ public class SalonServiceImpl implements SalonService {
 
 		Salon existingSalon = salonRepo.findById(salonId).orElse(null);
 
-		if(existingSalon != null && salon.getOwnerId().equals(user.getId())) {
+		if (!salon.getOwnerId().equals(user.getId())) {
+			throw new Exception("You are not allowed to update this salon");
+		}
+
+		if(existingSalon != null) {
 
 			existingSalon.setCity(salon.getCity());
 			existingSalon.setName(salon.getName());
 			existingSalon.setAddress(salon.getAddress());
 			existingSalon.setEmail(salon.getEmail());
 			existingSalon.setImages(salon.getImages());
-			existingSalon.setOpeningTime(salon.getOpeningTime());
+			existingSalon.setOpenTime(salon.getOpenTime());
 			existingSalon.setCloseTime(salon.getCloseTime());
 			existingSalon.setOwnerId(user.getId());
 			existingSalon.setPhoneNumber(salon.getPhoneNumber());
+
+			return salonRepo.save(existingSalon);
 		}
 
 		throw new Exception("Salon not exists!");

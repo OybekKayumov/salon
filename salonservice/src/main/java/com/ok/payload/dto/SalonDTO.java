@@ -27,7 +27,7 @@ public class SalonDTO {
 
 	//* private UserDTO owner;
 
-	private LocalTime openingTime;
+	private LocalTime openTime;
 
 	private LocalTime closeTime;
 }
