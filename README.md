@@ -34,8 +34,8 @@
 ### salon-service
 
 `
---- post
---- http://localhost:5002/api/salons
+- post
+- http://localhost:5002/api/salons
     {
         "name": "Beauty Salon",
         "address": "123 Main Str, Downtown",
@@ -48,8 +48,8 @@
     }
 `
 `
---- update salon
---- http://localhost:5002/api/salons/152
+- update salon
+- http://localhost:5002/api/salons/152
 
     {
         "name": "Beauty Salon",
