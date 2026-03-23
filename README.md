@@ -33,9 +33,9 @@
     `
 ### salon-service
 
-`
-post
-http://localhost:5002/api/salons
+    `
+    post
+    http://localhost:5002/api/salons
     {
         "name": "Beauty Salon",
         "address": "123 Main Str, Downtown",
@@ -46,22 +46,22 @@ http://localhost:5002/api/salons
         "closeTime": "20:00:00",
         "images": ["www.images.com/1","www.images.com/2"]  
     }
-
-update salon
-http://localhost:5002/api/salons/152
-    {
-        "name": "Beauty Salon",
-        "images": [
-                "www.images.com/1",
-                "www.images.com/2"
-            ],
-        "address": "456 Main Str, City Center",
-        "phoneNumber": "99 4567890 333",
-        "email": "salon1@mail.com",        
-        "city": "Dely",
-        "ownerId": 1,
-        "openTime": "08:00:00",
-         "closeTime": "21:00:00"
-    }  
-`
+    
+    update salon
+    http://localhost:5002/api/salons/152
+        {
+            "name": "Beauty Salon",
+            "images": [
+                    "www.images.com/1",
+                    "www.images.com/2"
+                ],
+            "address": "456 Main Str, City Center",
+            "phoneNumber": "99 4567890 333",
+            "email": "salon1@mail.com",        
+            "city": "Dely",
+            "ownerId": 1,
+            "openTime": "08:00:00",
+             "closeTime": "21:00:00"
+        }  
+    `
     
