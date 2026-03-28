@@ -64,4 +64,17 @@
              "closeTime": "21:00:00"
         }  
     `
-    
+
+### categories
+
+    `
+    post category
+    http://localhost:5003/api/categories/salon-owner
+        {
+           "name": "Hair Color",
+           "image": "www.images.com/4"    
+        }
+
+    get category
+        http://localhost:5003/api/categories/salon/1
+    `

@@ -14,7 +14,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
-	private CategoryRepo categoryRepo;
+	private final CategoryRepo categoryRepo;
 
 	@Override
 	public Category saveCategory(Category category, SalonDTO salonDTO) {
@@ -49,7 +49,8 @@ public class CategoryServiceImpl implements CategoryService {
 
 		Category category = getCategoryById(id);
 
-		if (category.getSalonId().equals(salonId)) {
+		//!
+		if (!category.getSalonId().equals(salonId)) {
 			throw new Exception("You can't delete category with id: " + id + " and salon: " + salonId);
 		}
 
