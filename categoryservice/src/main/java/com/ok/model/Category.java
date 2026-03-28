@@ -11,12 +11,10 @@ public class Category {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
 
-	@Column(unique = false)
+	@Column(nullable = false)
 	private String name;
 
 	private String image;
 
 	private Long salonId;
-
-
 }
