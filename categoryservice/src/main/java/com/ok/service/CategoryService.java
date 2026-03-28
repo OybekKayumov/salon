@@ -12,7 +12,7 @@ public interface CategoryService {
 
 	Set<Category> getAllCategoriesBySalon(Long id);
 
-	Category getCategoryById(Long id);
+	Category getCategoryById(Long id) throws Exception;
 
-	void deleteCategoryById(Long id);
+	void deleteCategoryById(Long id, Long salonId) throws Exception;
 }
