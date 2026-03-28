@@ -77,4 +77,18 @@
 
     get category
         http://localhost:5003/api/categories/salon/1
+
+    delete category
+
+        http://localhost:5003/api/categories/salon-owner/1
     `
+### service offering
+
+    --- 1. create new project in salon folder
+    --- 2. load maven
+    --- 3. copy into microservices folder new project
+    --- 4. delete .idea folder
+    --- 5. open microservices in idea
+    --- 6. load maven if asks
+    --- 7. update app.propertires to connect to db
+    --- 7. run new microservice
