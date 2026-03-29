@@ -91,4 +91,7 @@
     --- 5. open microservices in idea
     --- 6. load maven if asks
     --- 7. update app.propertires to connect to db
-    --- 7. run new microservice
+    --- 8. create a new db
+    --- 9. run new microservice
+
+
