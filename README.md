@@ -94,4 +94,25 @@
     --- 8. create a new db
     --- 9. run new microservice
 
+    post 
+    http://localhost:5004/api/service-offering/salon-owner
+
+        {
+            "name": "Aromatherapy",
+            "description": "a massage ...",
+            "price": 1299.99,
+            "duration": 90,
+            "category": 1,
+            "image": "https://images.com/6"
+        }
+
+    get all services of salon
+    http://localhost:5004/api/service-offering/salon/1
+
+    get services by id
+    http://localhost:5004/api/service-offering/2
+    
+
+    
+
 
