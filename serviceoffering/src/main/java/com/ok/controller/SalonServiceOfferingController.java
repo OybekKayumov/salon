@@ -19,8 +19,8 @@ public class SalonServiceOfferingController {
 	private final ServiceOfferingService serviceOfferingService;
 
 	@PostMapping
-	public ResponseEntity<ServiceOffering> createService
-					(@RequestBody ServiceDTO serviceDTO) throws Exception{
+	public ResponseEntity<ServiceOffering> createService(
+					@RequestBody ServiceDTO serviceDTO){
 
 		SalonDTO salonDTO = new SalonDTO();
 		salonDTO.setId(1L);
@@ -28,8 +28,19 @@ public class SalonServiceOfferingController {
 		CategoryDTO  categoryDTO = new CategoryDTO();
 		categoryDTO.setId(serviceDTO.getCategoryId());
 
-		ServiceOffering serviceOfferings = serviceOfferingService.
-						createService(salonDTO, serviceDTO, categoryDTO );
+		ServiceOffering serviceOfferings = serviceOfferingService
+						.createService(salonDTO, serviceDTO, categoryDTO);
+
+		return ResponseEntity.ok(serviceOfferings);
+	}
+
+	@PostMapping("/{id}")
+	public ResponseEntity<ServiceOffering> updateService(
+					@PathVariable Long id,
+					@RequestBody ServiceOffering serviceOffering) throws Exception {
+
+		ServiceOffering serviceOfferings = serviceOfferingService
+						.updateService(id, serviceOffering);
 
 		return ResponseEntity.ok(serviceOfferings);
 	}
