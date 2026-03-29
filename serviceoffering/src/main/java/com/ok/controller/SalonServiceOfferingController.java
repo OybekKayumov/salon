@@ -1,0 +1,36 @@
+package com.ok.controller;
+
+import com.ok.model.ServiceOffering;
+import com.ok.payload.dto.CategoryDTO;
+import com.ok.payload.dto.SalonDTO;
+import com.ok.payload.dto.ServiceDTO;
+import com.ok.service.ServiceOfferingService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/service-offering/salon-owner")
+public class SalonServiceOfferingController {
+
+	private final ServiceOfferingService serviceOfferingService;
+
+	@PostMapping
+	public ResponseEntity<ServiceOffering> createService
+					(@RequestBody ServiceDTO serviceDTO) throws Exception{
+
+		SalonDTO salonDTO = new SalonDTO();
+		salonDTO.setId(1L);
+
+		CategoryDTO  categoryDTO = new CategoryDTO();
+		categoryDTO.setId(serviceDTO.getCategoryId());
+
+		ServiceOffering serviceOfferings = serviceOfferingService.
+						createService(salonDTO, serviceDTO, categoryDTO );
+
+		return ResponseEntity.ok(serviceOfferings);
+	}
+}
