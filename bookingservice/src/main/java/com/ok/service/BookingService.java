@@ -17,13 +17,13 @@ public interface BookingService {
 	Booking createBooking(BookingRequest booking,
 	                      UserDTO user,
 	                      SalonDTO salon,
-	                      Set<ServiceDTO> servicesDTOSet);
+	                      Set<ServiceDTO> servicesDTOSet) throws Exception;
 
 	List<Booking> getBookingsByCustomer(Long customerId);
 
 	List<Booking> getBookingsBySalon(Long salonId);
 
-	Booking getBookingById(Long bookingId);
+	Booking getBookingById(Long bookingId) throws Exception;
 
 	Booking updateBooking(Long bookingId, BookingStatus status);
 
