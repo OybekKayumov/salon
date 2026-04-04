@@ -25,9 +25,9 @@ public interface BookingService {
 
 	Booking getBookingById(Long bookingId) throws Exception;
 
-	Booking updateBooking(Long bookingId, BookingStatus status);
+	Booking updateBooking(Long bookingId, BookingStatus status) throws Exception;
 
-	Booking getBookingsByDate(LocalDate date, Long salonId);
+	List<Booking> getBookingsByDate(LocalDate date, Long salonId);
 
 	SalonReport getSalonReport(Long salonId);
 
