@@ -178,6 +178,7 @@ public class BookingServiceImpl implements BookingService {
 		report.setTotalBookings(totalBooking);
 		report.setTotalEarnings(totalEarnings);
 		report.setTotalRefund(totalRefund);
+		report.setTotalBookings(totalBooking);
 
 		return report;
 	}
