@@ -1,20 +1,15 @@
-package com.ok.model;
+package com.ok.payload.dto;
 
 import com.ok.domain.BookingStatus;
-import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Entity
 @Data
-public class Booking {
+public class BookingDTO {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
 	private Long salonId;
 
 	private Long customerId;
@@ -22,11 +17,7 @@ public class Booking {
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
 
-	@ElementCollection
 	private Set<Long> serviceIds;
 
 	private BookingStatus status = BookingStatus.PENDING;
-
-	private int totalPrice;
-
 }

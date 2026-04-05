@@ -1,16 +1,14 @@
 package com.ok.controller;
 
 import com.ok.model.Booking;
-import com.ok.payload.dto.BookingRequest;
-import com.ok.payload.dto.SalonDTO;
-import com.ok.payload.dto.ServiceDTO;
-import com.ok.payload.dto.UserDTO;
+import com.ok.payload.dto.*;
 import com.ok.service.BookingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -48,5 +46,15 @@ public class BookingController {
 														serviceDTOSet);
 
 			return ResponseEntity.ok(booking);
+		}
+
+		@GetMapping
+	  public ResponseEntity<Set<BookingDTO>> getBookingsByCustomer() {
+
+//			UserDTO user = new UserDTO();
+//			user.setId(1L);
+
+			List<Booking> bookings = bookingService.getBookingsByCustomer(1l );
+
 		}
 }
