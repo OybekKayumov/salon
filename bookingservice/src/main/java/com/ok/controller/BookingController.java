@@ -3,6 +3,7 @@ package com.ok.controller;
 import com.ok.domain.BookingStatus;
 import com.ok.mapper.BookingMapper;
 import com.ok.model.Booking;
+import com.ok.model.SalonReport;
 import com.ok.payload.dto.*;
 import com.ok.service.BookingService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -33,6 +35,8 @@ public class BookingController {
 
 		SalonDTO salon = new SalonDTO();
 		salon.setId(salonId);
+		salon.setOpenTime(LocalTime.now());
+		salon.setCloseTime(LocalTime.now().plusHours(12));
 
 		Set<ServiceDTO> serviceDTOSet = new HashSet<>();
 
@@ -81,7 +85,7 @@ public class BookingController {
 	@GetMapping("/slots/salon/{salonId}/date/{date}")
 	public ResponseEntity<List<BookingSlotDTO>> getBookingsSlot(
 					@PathVariable Long salonId,
-					@RequestParam LocalDate date) throws Exception {
+					@RequestParam(required = false) LocalDate date) throws Exception {
 
 		List<Booking> bookings = bookingService.getBookingsByDate(date, salonId);
 
@@ -104,6 +108,14 @@ public class BookingController {
 		Booking booking = bookingService.updateBooking(bookingId, status);
 
 		return ResponseEntity.ok(BookingMapper.toDTO(booking));
+	}
+
+	@GetMapping("/report")
+	public ResponseEntity<SalonReport> getSalonReport() {
+
+		SalonReport report = bookingService.getSalonReport(1L);
+
+		return ResponseEntity.ok(report);
 	}
 
 	private Set<BookingDTO> getBookingDTOs(List<Booking> bookings) {

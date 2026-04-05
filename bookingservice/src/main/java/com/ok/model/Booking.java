@@ -29,4 +29,8 @@ public class Booking {
 
 	private int totalPrice;
 
+	//!
+//	@Column(name = "total_services")
+//	private int totalServices;
+
 }
