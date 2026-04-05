@@ -1,5 +1,6 @@
 package com.ok.controller;
 
+import com.ok.mapper.BookingMapper;
 import com.ok.model.Booking;
 import com.ok.payload.dto.*;
 import com.ok.service.BookingService;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/bookings")
@@ -55,6 +57,17 @@ public class BookingController {
 //			user.setId(1L);
 
 			List<Booking> bookings = bookingService.getBookingsByCustomer(1l );
+
+			return null;
+
+		}
+
+		private Set<BookingDTO> getBookingDTOs(List<Booking> bookings) {
+
+			return bookings.stream()
+							.map(booking -> {
+								return BookingMapper.toDTO(booking);
+							}).collect(Collectors.toSet());
 
 		}
 }
