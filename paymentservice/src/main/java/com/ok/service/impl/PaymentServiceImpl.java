@@ -30,7 +30,45 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public PaymentLinkResponse createOrder(UserDTO user, BookingDTO booking, PaymentMethod paymentMethod) {
-		return null;
+
+		Long amount = (long) booking.getTotalPrice();
+		PaymentOrder order = new PaymentOrder();
+		order.setAmount(amount);
+		order.setPaymentMethod(paymentMethod);
+		order.setBookingId(booking.getId());
+		order.setSalonId(booking.getSalonId());
+
+		PaymentOrder savedOrder = paymentOrderRepo.save(order);
+
+		PaymentLinkResponse paymentLinkResponse = new PaymentLinkResponse();
+
+		if (paymentMethod.equals(PaymentMethod.RAZORPAY)) {
+
+			PaymentLink payment = createRazorpayPaymentLink(
+							user,
+							savedOrder.getAmount(),
+							savedOrder.getId());
+
+			String paymentUrl = payment.get("short_url");
+
+			String paymentUrlId = payment.get("id");
+
+			paymentLinkResponse.setPayment_link_url(paymentUrl);
+			paymentLinkResponse.setGetPayment_link_id(paymentUrlId);
+
+			savedOrder.setPaymentLinkId(paymentUrlId);
+
+			paymentOrderRepo.save(savedOrder);
+		} else {
+			String paymentUrl = createStripePaymentLink(
+							user,
+							savedOrder.getAmount(),
+							savedOrder.getId());
+
+			paymentLinkResponse.setPayment_link_url(paymentUrl);
+		}
+
+		return paymentLinkResponse;
 	}
 
 	@Override

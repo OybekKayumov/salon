@@ -1,6 +1,5 @@
 package com.ok.payload.dto;
 
-import com.ok.domain.BookingStatus;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -19,5 +18,6 @@ public class BookingDTO {
 
 	private Set<Long> serviceIds;
 
-	private BookingStatus status = BookingStatus.PENDING;
+	private int totalPrice;
+
 }
