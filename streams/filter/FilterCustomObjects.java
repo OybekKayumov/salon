@@ -45,16 +45,25 @@ public class FilterCustomObjects {
 		List<Product> products = new ArrayList<>();  //* source
 		products.add(new Product("Phone", 999.99, "Electronic"));
 		products.add(new Product("Short", 29.99, "Clothing"));
-		products.add(new Product("TV", 149.99, "Electronic"));
+		products.add(new Product("TV", 1499.99, "Electronic"));
 		products.add(new Product("Laptop", 1299.99, "Electronic"));
 		products.add(new Product("Jeans", 59.99, "Clothing"));
 
 		// todo create Stream from List
+		//Stream<Product> stream = products.stream();
+//		List<Product> filtered =
+//						stream.filter(product -> product.getCategory().equals("Electronic"))
+//						.toList();
+//
+//		filtered.forEach(System.out::println);
+
+		//* multiple filter conditions
 		Stream<Product> stream = products.stream();
 		List<Product> filtered =
 						stream.filter(product -> product.getCategory().equals("Electronic"))
-						.toList();
-
+										.filter(product -> product.getPrice() > 1000)
+										.toList();
 		filtered.forEach(System.out::println);
 	}
+
 }
