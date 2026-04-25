@@ -44,4 +44,19 @@ public class PaymentController {
 
 		return ResponseEntity.ok(response);
 	}
+
+	@PatchMapping("/proceed")
+	public ResponseEntity<Boolean> proceedPayment(
+					@RequestParam String paymentId,
+					@RequestParam String paymentLinkId) throws Exception {
+
+		PaymentOrder paymentOrder =
+						paymentService.getPaymentOrderByPaymentId(paymentLinkId);
+
+		Boolean response =
+						paymentService.proceedPayment(paymentOrder, paymentId, paymentLinkId);
+
+		return ResponseEntity.ok(response);
+	}
+
 }
