@@ -1,12 +1,14 @@
 package com.ok.service.impl;
 
 import com.ok.domain.PaymentMethod;
+import com.ok.domain.PaymentOrderStatus;
 import com.ok.model.PaymentOrder;
 import com.ok.payload.dto.BookingDTO;
 import com.ok.payload.dto.UserDTO;
 import com.ok.payload.response.PaymentLinkResponse;
 import com.ok.repo.PaymentOrderRepo;
 import com.ok.service.PaymentService;
+import com.razorpay.Payment;
 import com.razorpay.PaymentLink;
 import com.razorpay.RazorpayClient;
 import com.razorpay.RazorpayException;
@@ -159,5 +161,41 @@ public class PaymentServiceImpl implements PaymentService {
 		Session session = Session.create(params);
 
 		return session.getUrl();
+	}
+
+	@Override
+	public Boolean proceedPayment(PaymentOrder paymentOrder, String paymentId, String paymentLinkId) throws RazorpayException {
+
+		if (paymentOrder.getStatus().equals(PaymentOrderStatus.PENDING)) {
+			if (paymentOrder.getPaymentMethod().equals(PaymentMethod.RAZORPAY)) {
+
+				RazorpayClient razorpay = new RazorpayClient(razorpayApiKey,
+								razorpayApiSecret);
+
+				Payment payment = razorpay.payments.fetch(paymentId);
+
+				Integer amount = payment.get("amount");
+				String status =  payment.get("status");
+
+				if (status.equals("captured")) {
+
+					//* produce kafka event
+
+					paymentOrder.setStatus(PaymentOrderStatus.SUCCESS);
+
+					paymentOrderRepo.save(paymentOrder);
+
+					return true;
+				}
+				return false;
+
+			} else {
+
+				paymentOrder.setStatus(PaymentOrderStatus.SUCCESS);
+				paymentOrderRepo.save(paymentOrder);
+				return true;
+			}
+		}
+		return false;
 	}
 }
