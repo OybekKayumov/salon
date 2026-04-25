@@ -122,6 +122,9 @@
 
 ### maven --> Reload All Maven Projects
         --- get Spring Boot: services list
+
+        --- http://localhost:8070/
+
     
     
 
