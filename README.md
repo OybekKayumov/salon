@@ -116,6 +116,12 @@
 
 
 ### payment service
+
+
+### eureka server
+
+### maven --> Reload All Maven Projects
+        --- get Spring Boot: services list
     
     
 
