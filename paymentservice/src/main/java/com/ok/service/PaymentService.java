@@ -7,12 +7,13 @@ import com.ok.payload.dto.UserDTO;
 import com.ok.payload.response.PaymentLinkResponse;
 import com.razorpay.PaymentLink;
 import com.razorpay.RazorpayException;
+import com.stripe.exception.StripeException;
 
 public interface PaymentService {
 
 	PaymentLinkResponse createOrder(UserDTO user,
                                 BookingDTO booking,
-                                PaymentMethod paymentMethod) throws RazorpayException;
+                                PaymentMethod paymentMethod) throws RazorpayException, StripeException;
 
 	PaymentOrder getPaymentOrderById(Long id) throws Exception;
 
@@ -24,5 +25,5 @@ public interface PaymentService {
 
 	String createStripePaymentLink(UserDTO user,
 	                               Long amount,
-	                               Long orderId);
+	                               Long orderId) throws StripeException;
 }
