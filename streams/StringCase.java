@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StringCase {
 
@@ -23,5 +24,19 @@ public class StringCase {
 						.getAsDouble();
 
 		System.out.println(average);
+
+		//* find square
+		List<Integer> numbers2 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+		List<Integer> res = numbers2.stream()
+						.filter(n -> n % 2 == 0)
+						.limit(3)         //* limit to the first three even numbers
+						.map(n -> n * n)
+						.toList();
+		System.out.println(res);
+
+//[APPLE, BANANA, ORANGE, CHERRY, MANGO]
+//30.0
+//[4, 16, 36]
 	}
 }
