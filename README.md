@@ -124,8 +124,10 @@
         --- get Spring Boot: services list
 
         --- http://localhost:8070/
+        
+        --- 1st start Eureka Server
+        --- 2nd start Booking service
 
-    
-    
+![img.png](img.png)
 
 
