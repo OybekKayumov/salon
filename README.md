@@ -136,3 +136,12 @@
 
 ### API Gateway Microservice
 
+    --- docker login                
+        Authenticating with existing credentials... [Username: dockerusername]
+
+        i Info → To login with a different account, run 'docker logout' followed by 'docker login'
+
+
+        Login Succeeded
+
+        mvn compile jib:build
