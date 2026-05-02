@@ -1,0 +1,62 @@
+#spring.application.name=gateway-server
+
+server:
+  port: 5000
+
+spring:
+  application:
+    name: gateway-server
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+
+          routes:
+            - id: BOOKINGSERVICE
+              uri: "lb://BOOKINGSERVICE"
+              predicates:
+                - Path= /api/bookings/**
+
+            - id: PAYMENTSERVICE
+              uri:
+                "lb://PAYMENTSERVICE"
+              predicates:
+                - Path= /api/payments/**
+
+            - id: CATEGORYSERVICE
+              uri:
+                "lb://CATEGORYSERVICE"
+              predicates:
+                - Path= /api/categories/**
+
+            - id: SALONSERVICE
+              uri:
+                "lb://SALONSERVICE"
+              predicates:
+                - Path= /salons/**, /api/salons/**, /api/admin/salons/**
+
+            - id: SERVICEOFFERING
+              uri:
+                "lb://SERVICEOFFERING"
+              predicates:
+                - Path= /api/service-offering/**
+
+            - id: USERSERVICE
+              uri:
+                "lb://USERSERVICE"
+              predicates:
+                - Path= /auth/**, /api/admin/users/**, /api/users/**, /users/**
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  #      hostname: localhost
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8070/eureka/
