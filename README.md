@@ -130,4 +130,9 @@
 
 ![img.png](img.png)
 
+### register other services
+
+![img_2.png](img_2.png)![img_1.png](img_1.png)
+
+### API Gateway Microservice
 
