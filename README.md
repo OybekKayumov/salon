@@ -138,10 +138,9 @@
 
     --- docker login                
         Authenticating with existing credentials... [Username: dockerusername]
-
         i Info → To login with a different account, run 'docker logout' followed by 'docker login'
-
-
         Login Succeeded
 
+        cd service-dir
         mvn compile jib:build
+
