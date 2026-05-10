@@ -1,7 +1,9 @@
 package com.ok.service;
 
+import com.ok.payload.dto.SignupDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +28,12 @@ public class KeyCloackService {
 
 	private static final String clientId = "d016b90f-14c6-401e-899e-12d91f183543";
 
+	private final RestTemplate restTemplate;
+
+	public void createUser(SignupDTO signupDTO) throws Exception {
+
+
+	}
 
 
 
